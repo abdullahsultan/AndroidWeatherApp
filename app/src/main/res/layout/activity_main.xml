@@ -74,12 +74,14 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        >
 
                         <ImageView
                             android:layout_width="50dp"
@@ -91,8 +93,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:orientation="horizontal">
+                        android:layout_marginLeft="15dp"
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/sunrise"
@@ -119,6 +121,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
@@ -135,8 +138,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:orientation="horizontal">
+                        android:layout_marginLeft="15dp"
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/sunset"
@@ -161,6 +164,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
@@ -177,8 +181,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:orientation="horizontal">
+                        android:layout_marginLeft="15dp"
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/temp"
@@ -203,6 +207,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
@@ -219,8 +224,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:orientation="horizontal">
+                        android:layout_marginLeft="15dp"
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/feels_like"
@@ -246,6 +251,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
@@ -262,8 +268,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:orientation="horizontal">
+                        android:layout_marginLeft="15dp"
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/pressure"
@@ -289,6 +295,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
@@ -305,8 +312,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:orientation="horizontal">
+                        android:layout_marginLeft="15dp"
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/humidity"
@@ -331,6 +338,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
@@ -347,8 +355,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:orientation="horizontal">
+                        android:layout_marginLeft="15dp"
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/uvi"
@@ -373,6 +381,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
@@ -389,8 +398,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:orientation="horizontal">
+                        android:layout_marginLeft="15dp"
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/clouds"
@@ -415,6 +424,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
@@ -431,8 +441,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:orientation="horizontal">
+                        android:layout_marginLeft="15dp"
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/visibility"
@@ -455,6 +465,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
                     android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
@@ -471,8 +482,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:orientation="horizontal">
+                        android:layout_marginLeft="15dp"
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/windSpeed"
