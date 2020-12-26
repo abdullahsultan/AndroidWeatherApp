@@ -1,7 +1,11 @@
 package com.example.assignment_1;
 
+import android.annotation.SuppressLint;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,16 +19,22 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     RequestQueue mRequestQueue;
+    static WeatherProperties weatherProperties = null;
     ArrayList <String> data = new ArrayList<>();
+    TextView textView_main_temprature;
+    TextView textView_weatherDesc;
+    ImageView imageView_weatherimae;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +43,13 @@ public class MainActivity extends AppCompatActivity {
 
         mRequestQueue = Volley.newRequestQueue(this);
         fetchJsonResponse();
+        Log.i("LALA", "onCreate: From create");
+
+        textView_main_temprature = findViewById(R.id.temprature);
+        imageView_weatherimae = findViewById(R.id.weather_image);
+        textView_weatherDesc = findViewById(R.id.weather_desc);
+      //  if (weatherProperties != null)
+           //  textView_main_temprature.setText(weatherProperties.getMain().getTemp().toString());
 
 
         data.add("Sunrise");
@@ -56,10 +73,18 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        Log.i("LALA", "onCreate: From FUNC");
                         Gson gson = new Gson();
-                        WeatherProperties weatherProperties = gson.fromJson(response.toString(),WeatherProperties.class);
-                        Log.i("Venom", "onResponse: "+ weatherProperties.getMain().getTemp().toString());
+                        weatherProperties = gson.fromJson(response.toString(),WeatherProperties.class);
+                        Log.i("VENOM",weatherProperties.getMain().getTemp().toString());
                         Toast.makeText(MainActivity.this, "Working", Toast.LENGTH_SHORT).show();
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                UISetter(weatherProperties);
+                            }
+                        });
+
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -72,5 +97,22 @@ public class MainActivity extends AppCompatActivity {
 
         /* Add your Requests to the RequestQueue to execute */
         mRequestQueue.add(req);
+    }
+
+    ////////////////////////////////////////////////////////////////Setting all data to UI/////////////////////////////////////////////
+    public void UISetter(WeatherProperties weatherProperties){
+        weatherProperties.getMain().setTemp(weatherProperties.getMain().getTemp() - 273.15);
+        textView_main_temprature.setText(weatherProperties.getMain().getTemp().toString() + "℃");
+        textView_weatherDesc.setText( weatherProperties.getWeather().get(0).getDescription().toUpperCase());
+
+        String ImageLink = "https://openweathermap.org/img/wn/";
+        ImageLink = ImageLink + weatherProperties.getWeather().get(0).getIcon() + "@2x.png";
+        Glide.with(this).load(ImageLink).into(imageView_weatherimae);
+
+    }
+
+    public void selectIconAndDes()
+    {
+
     }
 }
