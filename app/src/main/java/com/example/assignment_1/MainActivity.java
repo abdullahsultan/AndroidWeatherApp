@@ -1,7 +1,5 @@
 package com.example.assignment_1;
 
-import android.annotation.SuppressLint;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -31,36 +29,27 @@ public class MainActivity extends AppCompatActivity {
 
     RequestQueue mRequestQueue;
     static WeatherProperties weatherProperties = null;
-    ArrayList <String> data = new ArrayList<>();
+    ArrayList <WeatherDetails> data = new ArrayList<>();
     TextView textView_main_temprature;
     TextView textView_weatherDesc;
     ImageView imageView_weatherimae;
+    WeatherDetails wd;
+    RecyclerView recyclerView;
+    MyAdapter adapter;
+    LinearLayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         mRequestQueue = Volley.newRequestQueue(this);
         fetchJsonResponse();
-        Log.i("LALA", "onCreate: From create");
 
         textView_main_temprature = findViewById(R.id.temprature);
         imageView_weatherimae = findViewById(R.id.weather_image);
         textView_weatherDesc = findViewById(R.id.weather_desc);
-      //  if (weatherProperties != null)
-           //  textView_main_temprature.setText(weatherProperties.getMain().getTemp().toString());
-
-
-        data.add("Sunrise");
-        data.add("Sunset");
-        data.add("Temprature");
-        ////////////////////////////////////////////// Setting Adapter///////////////////////////////////////
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        MyAdapter adapter = new MyAdapter(this,data);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
 
 
     }
@@ -73,11 +62,8 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.i("LALA", "onCreate: From FUNC");
                         Gson gson = new Gson();
                         weatherProperties = gson.fromJson(response.toString(),WeatherProperties.class);
-                        Log.i("VENOM",weatherProperties.getMain().getTemp().toString());
-                        Toast.makeText(MainActivity.this, "Working", Toast.LENGTH_SHORT).show();
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -90,8 +76,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.e("Error: ", error.getMessage());
-                Log.i("Errr", error.getMessage());
-                Toast.makeText(MainActivity.this, "NotWorking", Toast.LENGTH_SHORT).show();
+                Log.i("ErrorLog", error.getMessage());
+                Toast.makeText(MainActivity.this, "Internet not available", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -109,10 +95,24 @@ public class MainActivity extends AppCompatActivity {
         ImageLink = ImageLink + weatherProperties.getWeather().get(0).getIcon() + "@2x.png";
         Glide.with(this).load(ImageLink).into(imageView_weatherimae);
 
+        wd = new WeatherDetails(R.drawable.sunrise,"Sunrise",weatherProperties.getSys().getSunrise().toString());
+        data.add(wd);
+        wd = new WeatherDetails(R.drawable.sunset,"Sunset",weatherProperties.getSys().getSunset().toString());
+        data.add(wd);
+        wd = new WeatherDetails(R.drawable.humidity,"Humidity",weatherProperties.getMain().getHumidity().toString());
+        data.add(wd);
+        wd = new WeatherDetails(R.drawable.pressure,"Pressure",weatherProperties.getMain().getPressure().toString());
+        data.add(wd);
+        wd = new WeatherDetails(R.drawable.windspeed,"WindSpeed",weatherProperties.getWind().getSpeed().toString());
+        data.add(wd);
+
+        ////////////////////////////////////////////// Setting Adapter///////////////////////////////////////
+        recyclerView = findViewById(R.id.recyclerView);
+        adapter = new MyAdapter(this,data);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+
     }
 
-    public void selectIconAndDes()
-    {
-
-    }
 }

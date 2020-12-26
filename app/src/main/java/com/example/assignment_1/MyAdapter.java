@@ -1,6 +1,7 @@
 package com.example.assignment_1;
 
 import android.content.Context;
+import android.os.Build;
 import android.service.controls.Control;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.w3c.dom.Text;
@@ -19,8 +21,8 @@ import java.util.ArrayList;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     Context context;
-    ArrayList<String> data;
-    public MyAdapter(Context context, ArrayList<String> data){
+    ArrayList<WeatherDetails> data;
+    public MyAdapter(Context context, ArrayList<WeatherDetails> data){
         this.context = context;
         this.data = data;
     }
@@ -34,10 +36,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         return viewHolder;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            String data = this.data.get(position);
-            holder.upperText.setText(data);
+        WeatherDetails data = this.data.get(position);
+            holder.imageView.setImageResource(data.Icon);
+            holder.upperText.setText(data.upperText);
+            holder.loweText.setText(data.lowerText);
 
     }
 
